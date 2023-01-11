@@ -1,12 +1,11 @@
-from Model import *
+from Models.Model import *
 from pygame.event import Event
 import pygame
 
 class Controller:
     __slots__ = ['x' , 'y', 'model']
     
-    def __init__(self, model: Model) -> None:
-        self.x, self.y = 100, 100
+    def __init__(self, model: Model):
         self.model = model
         
     def __processEvent(self, event: Event):  

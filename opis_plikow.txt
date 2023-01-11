@@ -1,0 +1,36 @@
+App 6
+- dowodzi
+- wszystko tworzy
+- z niczego nie korzysta (przy inicjalizacji)
+
+Model (Models) 1
+- przechowuje informacje na temat stanu aplikacji - czy jesteśmy w menu albo w jakimś poziomie, czy aplikacja jest uruchomiona, informacje o poziomie, kontekst gracza (zmienia wynik kliknięcia myszki, np. czy po kliknięciu leming jest spadochroniarzem, czy wspinaczem, itp.)
+- nic nie tworzy
+- z niczego nie korzysta
+
+Conrtoller
+- na podstawie wydarzeń użytkownika (klawisze, myszka) aktualizuje model
+- korzysta z modelu - aktualizuje go, więc musi go posiadać
+
+View 5
+- rysuje aktualny model, tworzy warstwę wizualną aplikacji (na podstawie modelu decyduje, który View Model jest rysowany)
+- tworzy View Modele (wszystkie), ale rysuje tylko jeden
+- korzysta z modelu do wyboru View Modelu
+
+BackgroundService
+- będzie robił wszystko, czego gracz nie robi, a dzieje się na ekranie (np. przemieszczenie lemingów)
+- korzysta z modelu
+
+Level (Models) 2
+- model poziomu
+- przetrzymuje informacje takie jak: gdzie startują lemingi, gdzie muszą dotrzeć, ile lemingow, informacje o lemingach (tablica lemingow), itp.
+
+Lemming (Models) 3
+- przechowuje informacje na temat leminga (jednego) - np. pozycja, stan (w ktorym sie znajduje), typ (np. spadochroniarz), itp.
+
+main 7
+
+ViewModels: (przetrzymuej informacje potrzebne do narysowania modelu)
+-> LevelViewModel 4
+-> MenuViewModel
+-> LoadingModel 
