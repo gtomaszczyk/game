@@ -1,3 +1,6 @@
 class LemmingState:
-    WalkRight = 1
-    WalkLeft = 2
+    Walk = 1
+    Fall = 2
+class LemmingDirection:
+    Left = False
+    Right = True
