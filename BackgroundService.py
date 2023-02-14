@@ -17,7 +17,7 @@ class BackgroundService:
                     lemming.direction = LemmingDirection.Left
                     #     O
                     #     O
-                    #     O
+                    #     
                     #     O
                     #xxxxXO
                     #xxxx
