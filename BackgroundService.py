@@ -30,12 +30,12 @@ class BackgroundService:
                 else:
                     lemming.state = LemmingState.Walk
                 
-                print(self.model.currentLevel.map[newLeftXEdge][lemming.position[1]])
+                #print(self.model.currentLevel.map[newLeftXEdge][lemming.position[1]])
                 if (self.model.currentLevel.map[newLeftXEdge][lemming.position[1]] == False):
                     lemming.position[0] = lemming.position[0] - 1
                 else:
                     lemming.direction = LemmingDirection.Right
-            print("state :",lemming.state)
+            #print("state :",lemming.state)
 
         if (lemming.state == LemmingState.Fall):
             newRightXEdge = lemming.position[0] + lemming.size[0]
