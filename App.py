@@ -2,7 +2,7 @@ import pygame
 from Models.Model import *
 from Controller import *
 from View import *
-from BackgroundService import BackgroundService
+from Services.BackgroundService import BackgroundService
 
 class App:
     def __init__(self):
@@ -10,8 +10,8 @@ class App:
         self.backgroundService = BackgroundService(self.model)
         self.controller = Controller(self.model)
         self.view = View(self.model)
-        self.clock = pygame.time.Clock() 
-    
+        self.clock = pygame.time.Clock()
+        
     def cleanup(self):
         pygame.quit()
  

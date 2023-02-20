@@ -1,12 +1,10 @@
 class LemmingState:
     Walk = 1
     Fall = 2
-    Climb = 3
-    Dig = 4
-    Stop = 5
+    SpecialAbility = 3
 class LemmingDirection:
-    Left = False
-    Right = True
+    Left = 1
+    Right = 2
 class LemmingAbility:
     Floater = 1
     Digger = 2
