@@ -1,0 +1,3 @@
+git config --global user.name kuba
+git config --global user.email qbab.net@gmail.com
+git config --global github.user qbabron
