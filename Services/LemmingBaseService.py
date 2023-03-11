@@ -35,6 +35,10 @@ class LemmingBaseService:
                     lemming.position[0] = lemming.position[0] - 1
                 else:
                     lemming.direction = LemmingDirection.Right
+        #testowo finishowanie leminga
+        if lemming.position[1] > self.model.currentLevel.endPosition[1]:
+            lemming.finished = True
+            print("lemming finished")
                     
     def _checkSpecialAbilityCondition(self, lemming: Lemming):
         return False
