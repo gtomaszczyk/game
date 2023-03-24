@@ -3,7 +3,9 @@ from Attributes.LemmingAttributes import LemmingState,LemmingDirection
 from Models.Lemming import Lemming
 
 class LemmingBaseService:
-    
+    """
+    będzie robił to, czego gracz nie robi, a dzieje się na ekranie - przemieszczenie lemingów
+    """
     def __init__(self, model: Model):
         self.model = model
         
@@ -38,7 +40,6 @@ class LemmingBaseService:
         #testowo finishowanie leminga
         if lemming.position[1] > self.model.currentLevel.endPosition[1]:
             lemming.finished = True
-            print("lemming finished")
                     
     def _checkSpecialAbilityCondition(self, lemming: Lemming):
         return False
@@ -52,8 +53,3 @@ class LemmingBaseService:
             self._invokeSpecialAbility(lemming)
         else:
             self._updatePosition(lemming)
-            
-
-        
-    
-

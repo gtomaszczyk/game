@@ -2,6 +2,10 @@ from Models.Lemming import *
 import datetime as dt
 
 class Level:
+    """
+    przetrzymuje informacje o poziomie
+    przetrzymuje informacje takie jak: gdzie startują lemingi, gdzie muszą dotrzeć, ile lemingow, informacje o lemingach (tablica lemingow)
+    """
     def __init__(self):
         self.lemmings = [] #pusta tablica - lemmingi tworzone sa w backgroundService w metodzie __updateLevelModel
         self.lastLemmingTime=dt.datetime.now()

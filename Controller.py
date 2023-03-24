@@ -3,6 +3,9 @@ from pygame.event import Event
 import pygame
 
 class Controller:
+    """
+    na podstawie wydarzeń użytkownika (funkcje __processEvent(event) i __processKeys()) aktualizuje model (funkcja upadateModel)
+    """
     __slots__ = ['model']
     
     def __init__(self, model: Model):
