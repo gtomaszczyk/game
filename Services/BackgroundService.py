@@ -6,17 +6,24 @@ import datetime as dt
 
 class BackgroundService:
     """
-    spawnuje lemmingi sprawdza czy lemming jest w grze czy już skończył
+    automatyczna obsługa zdarzeń (użytkownik nie ma wpływu), np. chodzenie lemminga
     """
     def __init__(self, model: Model):
         self.model = model
         self.lemmingBaseService = LemmingBaseService(self.model)
 
     def __createNewLemming(self):
+        """
+        tworzymy lemminga w portalu początkowym 
+        """
         self.model.currentLevel.lemmings.append(Lemming([x for x in self.model.currentLevel.startPosition]))
 
 
     def __updateLevelModel(self):
+        """
+        1. tworzy kolejne lemmingi po upływie zadanego czasu
+        2. automatyczna obsługa zdarzeń dla każdego aktywnego (widocznego) lemminga
+        """
         if self.model.currentLevel.lastLemmingTime < dt.datetime.now()-self.model.currentLevel.LemmingInterval and len(self.model.currentLevel.lemmings)<self.model.currentLevel.allLemmingCount:
             self.__createNewLemming()
             self.model.currentLevel.lastLemmingTime=dt.datetime.now()

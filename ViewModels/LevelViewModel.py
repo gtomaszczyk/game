@@ -2,7 +2,10 @@ import pygame
 from Models.Model import *
 
 class LevelViewModel:
-
+    """
+    rysuje obecny model
+    ładuje grafikę
+    """
     def __init__(self, model: Model, surface):
         self.model = model
         self.surface = surface
@@ -16,7 +19,13 @@ class LevelViewModel:
         self.walk2 = [pygame.transform.flip(x, True, False) for x in self.walk]
         self.fall2 = [pygame.transform.flip(x, True, False) for x in self.fall]
         self.startportal = pygame.image.load('Images\\start-portal.png')
+
     def render(self):
+        """
+        1. rysuje mapę
+        2. rysuje portale
+        3. rysuje aktywne lemmingi w odpowiednim stanie i kierunku
+        """
         for x, column in enumerate(self.model.currentLevel.map):
             for y, value in enumerate(column):
                 self.surface.set_at((x, y), (255, 255, 255) if value else (0,0,0))
