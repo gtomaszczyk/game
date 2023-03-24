@@ -2,6 +2,9 @@ from Attributes.LemmingAttributes import LemmingDirection, LemmingState
 
 
 class Lemming:
+    """
+    przetrzymuje informacje o konkretnym lemmingu
+    """
     def __init__(self,pos): #pos - pozycja początkowa (x,y)
         self.size = (4,10)
         self.actionMoment = 1 # int, pole okreslajace ktora klatka jest wykorzystywana w danym momencie
