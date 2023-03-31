@@ -12,5 +12,7 @@ class Lemming:
         self.position = pos
         self.state = LemmingState.Walk
         self.direction = LemmingDirection.Right
+        #self.ability = LemmingAbility.Stopper
+                       
 
    

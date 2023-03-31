@@ -52,6 +52,9 @@ class LemmingBaseService:
         #testowo finishowanie leminga
         if lemming.position[1] > self.model.currentLevel.endPosition[1]:
             lemming.finished = True
+
+        #testowo pokazywanie pozycji leminga
+        #print(lemming.position[0],lemming.position[1])
                     
     def _checkSpecialAbilityCondition(self, lemming: Lemming):
         """
