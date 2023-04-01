@@ -33,8 +33,9 @@ class Controller:
                 print("lem",i,lemX,lemY)
                 if mx>=lemX and mx <=lemX+lemsize[0] and my >=lemY and my <= lemY+lemsize[1]:
                     print("!!! click lemming :",i)
-                    self.model.currentLevel.lemmings[i].state=LemmingState.SpecialAbility
-                    #self.model.currentLevel.lemmings[i].ability=LemmingAbility.Stopper
+                    #self.model.currentLevel.lemmings[i].state=LemmingState.SpecialAbility
+                    self.model.currentLevel.lemmings[i].ability=LemmingAbility.Stopper
+                    break
         
            
     def __processKeys(self):
