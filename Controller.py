@@ -25,16 +25,16 @@ class Controller:
             mx=round(pygame.mouse.get_pos()[0]/self.model.scale)
             my=round(pygame.mouse.get_pos()[1]/self.model.scale)
             #print("lemming",self.model.currentLevel.lemmings[0].position[0],self.model.currentLevel.lemmings[0].position[1])
-            for i in range(len(self.model.currentLevel.lemmings)):
-                lemX=self.model.currentLevel.lemmings[i].position[0]
-                lemY=self.model.currentLevel.lemmings[i].position[1]
-                lemsize=self.model.currentLevel.lemmings[i].size
+            for lem in self.model.currentLevel.lemmings:
+                lemX=lem.position[0]
+                lemY=lem.position[1]
+                lemsize=lem.size
                 
-                print("lem",i,lemX,lemY)
+                print("lem",lem,lemX,lemY)
                 if mx>=lemX and mx <=lemX+lemsize[0] and my >=lemY and my <= lemY+lemsize[1]:
-                    print("!!! click lemming :",i)
+                    print("!!! click lemming :",lem)
                     #self.model.currentLevel.lemmings[i].state=LemmingState.SpecialAbility
-                    self.model.currentLevel.lemmings[i].ability=LemmingAbility.Stopper
+                    lem.ability=LemmingAbility.Stopper
                     break
         
            
