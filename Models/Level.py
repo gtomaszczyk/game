@@ -10,6 +10,7 @@ class Level:
         self.lemmings = [] #pusta tablica - lemmingi tworzone sa w backgroundService w metodzie __updateLevelModel
         self.lastLemmingTime=dt.datetime.now()
         self.LemmingInterval=dt.timedelta(seconds=5)
+        self.selectedLemmingAbility = LemmingAbility.Walker
 
         with open('Data/level1.txt', 'r') as file: #otwieranie pliku w trybie odczytu - 'r' - read (nie mozna w tym trybie edytowac pliku)
             self.startPosition= [int(el) for el in file.readline().split()]

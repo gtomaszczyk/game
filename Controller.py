@@ -34,7 +34,7 @@ class Controller:
                 if mx>=lemX and mx <=lemX+lemsize[0] and my >=lemY and my <= lemY+lemsize[1]:
                     print("!!! click lemming :",lem)
                     #self.model.currentLevel.lemmings[i].state=LemmingState.SpecialAbility
-                    lem.ability=LemmingAbility.Stopper
+                    lem.ability=self.model.currentLevel.selectedLemmingAbility
                     break
         
            
@@ -43,6 +43,9 @@ class Controller:
         sprawdza jakie klawisze zostały naciśnięte
         """
         keys = pygame.key.get_pressed()
+        if keys[pygame.K_2]:
+            self.model.currentLevel.selectedLemmingAbility = LemmingAbility.Stopper
+
         '''
         if keys[pygame.K_LEFT]:
             self.model.x -= 1

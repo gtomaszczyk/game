@@ -6,7 +6,7 @@ class LevelViewModel:
     rysuje obecny model
     ładuje grafikę
     """
-    def __init__(self, model: Model, surface):
+    def __init__(self, model: Model, surface: pygame.Surface):
         self.model = model
         self.surface = surface
         self.walk = [pygame.image.load('Images\\Lemming\\' + imageName) for imageName in ['walk1.png','walk2.png','walk3.png','walk4.png']]
@@ -15,10 +15,27 @@ class LevelViewModel:
         self.fallOffset = [0,0]
         self.fallOffset2 = [-2,0]
         self.dig = [pygame.image.load('Images\\Lemming\\' + imageName) for imageName in ['dig1.png','dig2.png','dig3.png','dig4.png','dig5.png','dig6.png','dig7.png','dig8.png']]
+        self.digOffset = [-2, 1]
         self.climb = [pygame.image.load('Images\\Lemming\\' + imageName) for imageName in ['climb1.png','climb2.png','climb3.png','climb4.png','climb5.png','climb6.png','climb7.png','climb8.png']]
         self.walk2 = [pygame.transform.flip(x, True, False) for x in self.walk]
         self.fall2 = [pygame.transform.flip(x, True, False) for x in self.fall]
         self.startportal = pygame.image.load('Images\\start-portal.png')
+        self.font = pygame.font.SysFont(None, 14) # inicjalizacja czcionki
+        
+    def __drawLemmingAbilityButtons(self):
+        xLemmingAbilityButton = self.surface.get_width() / self.model.scale - 22
+        buttonHeight = 14
+        white = (255,255,255)
+        red = (255, 0, 0)
+        # digger button
+        pygame.draw.rect(self.surface, red if self.model.currentLevel.selectedLemmingAbility == LemmingAbility.Digger else white, (xLemmingAbilityButton, 0, 22, buttonHeight), width= 1)
+        self.surface.blit(self.font.render("1", False, (255,255,255)), (xLemmingAbilityButton + 3,2))
+        self.surface.blit(self.dig[0], (xLemmingAbilityButton + 12 + self.digOffset[0], 2 + self.digOffset[1]))
+        # stopper button
+        pygame.draw.rect(self.surface, red if self.model.currentLevel.selectedLemmingAbility == LemmingAbility.Stopper else white, (xLemmingAbilityButton, buttonHeight, 22, buttonHeight), width= 1)
+        self.surface.blit(self.font.render("2", False, (255,255,255)), (xLemmingAbilityButton + 3, buttonHeight + 2))
+        # TODO: Gabi, zmienic self.walk na self.stop i self.walkOffset'y na self.stopOffset'y
+        self.surface.blit(self.walk[0], (xLemmingAbilityButton + 12 + self.walkOffset[0], buttonHeight + 2 + self.walkOffset[1]))
 
     def render(self):
         """
@@ -56,3 +73,5 @@ class LevelViewModel:
                     image = self.fall2[lemming.actionMoment] 
                     self.surface.blit(image, (lemming.position[0] + self.fallOffset2[0], lemming.position[1] + self.fallOffset2[1]))
                     lemming.actionMoment = (lemming.actionMoment + 1) % len(self.fall)
+
+        self.__drawLemmingAbilityButtons()
