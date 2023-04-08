@@ -6,6 +6,7 @@ class LemmingDirection:
     Left = 1
     Right = 2
 class LemmingAbility:
+    Walker = 0
     Floater = 1
     Digger = 2
     Climber = 3

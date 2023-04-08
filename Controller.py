@@ -19,6 +19,23 @@ class Controller:
         if event.type == pygame.QUIT:
             self.model.running = False
         #if event.type == pygame.KEYDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            #print("klik",pygame.mouse.get_pos())
+            print("mouse klik",round(pygame.mouse.get_pos()[0]/self.model.scale),round(pygame.mouse.get_pos()[1]/self.model.scale))
+            mx=round(pygame.mouse.get_pos()[0]/self.model.scale)
+            my=round(pygame.mouse.get_pos()[1]/self.model.scale)
+            #print("lemming",self.model.currentLevel.lemmings[0].position[0],self.model.currentLevel.lemmings[0].position[1])
+            for lem in self.model.currentLevel.lemmings:
+                lemX=lem.position[0]
+                lemY=lem.position[1]
+                lemsize=lem.size
+                
+                print("lem",lem,lemX,lemY)
+                if mx>=lemX and mx <=lemX+lemsize[0] and my >=lemY and my <= lemY+lemsize[1]:
+                    print("!!! click lemming :",lem)
+                    #self.model.currentLevel.lemmings[i].state=LemmingState.SpecialAbility
+                    lem.ability=LemmingAbility.Stopper
+                    break
         
            
     def __processKeys(self):

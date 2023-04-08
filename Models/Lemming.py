@@ -1,4 +1,4 @@
-from Attributes.LemmingAttributes import LemmingDirection, LemmingState
+from Attributes.LemmingAttributes import LemmingDirection, LemmingState, LemmingAbility
 
 
 class Lemming:
@@ -12,5 +12,7 @@ class Lemming:
         self.position = pos
         self.state = LemmingState.Walk
         self.direction = LemmingDirection.Right
+        self.ability = LemmingAbility.Walker
+                       
 
    

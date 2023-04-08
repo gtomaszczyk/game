@@ -52,6 +52,9 @@ class LemmingBaseService:
         #testowo finishowanie leminga
         if lemming.position[1] > self.model.currentLevel.endPosition[1]:
             lemming.finished = True
+
+        #testowo pokazywanie pozycji leminga
+        #print(lemming.position[0],lemming.position[1])
                     
     def _checkSpecialAbilityCondition(self, lemming: Lemming):
         """
@@ -70,7 +73,7 @@ class LemmingBaseService:
         w zależności od ability lemminga wywołuje odpowiednią akcję
         """
         if self._checkSpecialAbilityCondition(lemming):
-            lemming.state = LemmingState.SpecialAbility
+            #lemming.state = LemmingState.SpecialAbility
             self._invokeSpecialAbility(lemming)
         else:
             self._updatePosition(lemming)
