@@ -50,8 +50,9 @@ class LemmingBaseService:
                 else:
                     lemming.direction = LemmingDirection.Right
         #testowo finishowanie leminga
-        if lemming.position[1] > self.model.currentLevel.endPosition[1]:
+        if lemming.position[1] + lemming.size[1] > self.model.currentLevel.endPosition[1] and lemming.position[0] + lemming.size[0] > self.model.currentLevel.endPosition[0]:
             lemming.finished = True
+            
 
         #testowo pokazywanie pozycji leminga
         #print(lemming.position[0],lemming.position[1])
