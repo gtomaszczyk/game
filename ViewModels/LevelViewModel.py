@@ -14,12 +14,19 @@ class LevelViewModel:
         self.fall = [pygame.image.load('Images\\Lemming\\' + imageName) for imageName in ['fall1.png','fall2.png','fall3.png','fall4.png']]
         self.fallOffset = [0,0]
         self.fallOffset2 = [-2,0]
+        self.stop = [pygame.image.load('Images\\Lemming\\' + imageName) for imageName in ['stopper1.png', 'stopper2.png', 'stopper3.png', 'stopper4.png', 'stopper5.png', 'stopper5.png', 'stopper4.png', 'stopper3.png', 'stopper2.png', ]]
+        self.stopOffset = [-2,0] #?
         self.dig = [pygame.image.load('Images\\Lemming\\' + imageName) for imageName in ['dig1.png','dig2.png','dig3.png','dig4.png','dig5.png','dig6.png','dig7.png','dig8.png']]
         self.digOffset = [-2, 1]
         self.climb = [pygame.image.load('Images\\Lemming\\' + imageName) for imageName in ['climb1.png','climb2.png','climb3.png','climb4.png','climb5.png','climb6.png','climb7.png','climb8.png']]
         self.walk2 = [pygame.transform.flip(x, True, False) for x in self.walk]
         self.fall2 = [pygame.transform.flip(x, True, False) for x in self.fall]
         self.startportal = pygame.image.load('Images\\start-portal.png')
+        self.startportal = pygame.transform.scale(self.startportal, (14, 10))
+        self.startportalOffset = [-5, -2]
+        self.endportal = pygame.image.load('Images\\end-portal.png')
+        self.endportal = pygame.transform.scale(self.endportal, (17, 14))
+        self.endportalOffset = [-9, -12]
         self.font = pygame.font.SysFont(None, 14) # inicjalizacja czcionki
         
     def __drawLemmingAbilityButtons(self):
@@ -35,7 +42,7 @@ class LevelViewModel:
         pygame.draw.rect(self.surface, red if self.model.currentLevel.selectedLemmingAbility == LemmingAbility.Stopper else white, (xLemmingAbilityButton, buttonHeight, 22, buttonHeight), width= 1)
         self.surface.blit(self.font.render("2", False, (255,255,255)), (xLemmingAbilityButton + 3, buttonHeight + 2))
         # TODO: Gabi, zmienic self.walk na self.stop i self.walkOffset'y na self.stopOffset'y
-        self.surface.blit(self.walk[0], (xLemmingAbilityButton + 12 + self.walkOffset[0], buttonHeight + 2 + self.walkOffset[1]))
+        self.surface.blit(self.stop[0], (xLemmingAbilityButton + 12 + self.stopOffset[0], buttonHeight + 2 + self.stopOffset[1]))
 
     def render(self):
         """
@@ -49,6 +56,10 @@ class LevelViewModel:
 
 
         self.surface.set_at((self.model.currentLevel.endPosition[0],self.model.currentLevel.endPosition[1]), (255, 255, 255))
+        self.surface.blit(self.endportal, (self.model.currentLevel.endPosition[0] + self.endportalOffset[0], self.model.currentLevel.endPosition[1] + self.endportalOffset[1]))
+
+        self.surface.set_at((self.model.currentLevel.startPosition[0],self.model.currentLevel.startPosition[1]), (255, 255, 255))
+        self.surface.blit(self.startportal, (self.model.currentLevel.startPosition[0] + self.startportalOffset[0], self.model.currentLevel.startPosition[1] + self.startportalOffset[1]))
 
         #TODO: to samo co w background service, nie chcemy rysowac lemmingow ktore skonczyly rozgrywke
         #q: zrobione
