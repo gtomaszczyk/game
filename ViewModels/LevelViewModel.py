@@ -23,17 +23,18 @@ class LevelViewModel:
         self.font = pygame.font.SysFont(None, 14) # inicjalizacja czcionki
         
     def __drawLemmingAbilityButtons(self):
-        xLemmingAbilityButton = self.surface.get_width() / self.model.scale - 22
+        buttonWidth = 22
+        xLemmingAbilityButton = self.surface.get_width() / self.model.scale - buttonWidth
         buttonHeight = 14
         white = (255,255,255)
         red = (255, 0, 0)
         # digger button
-        pygame.draw.rect(self.surface, red if self.model.currentLevel.selectedLemmingAbility == LemmingAbility.Digger else white, (xLemmingAbilityButton, 0, 22, buttonHeight), width= 1)
-        self.surface.blit(self.font.render("1", False, (255,255,255)), (xLemmingAbilityButton + 3,2))
+        pygame.draw.rect(self.surface, red if self.model.currentLevel.selectedLemmingAbility == LemmingAbility.Digger else white, (xLemmingAbilityButton, 0, buttonWidth, buttonHeight), width= 1)
+        self.surface.blit(self.font.render("1", False, white), (xLemmingAbilityButton + 3,2))
         self.surface.blit(self.dig[0], (xLemmingAbilityButton + 12 + self.digOffset[0], 2 + self.digOffset[1]))
         # stopper button
-        pygame.draw.rect(self.surface, red if self.model.currentLevel.selectedLemmingAbility == LemmingAbility.Stopper else white, (xLemmingAbilityButton, buttonHeight, 22, buttonHeight), width= 1)
-        self.surface.blit(self.font.render("2", False, (255,255,255)), (xLemmingAbilityButton + 3, buttonHeight + 2))
+        pygame.draw.rect(self.surface, red if self.model.currentLevel.selectedLemmingAbility == LemmingAbility.Stopper else white, (xLemmingAbilityButton, buttonHeight, buttonWidth, buttonHeight), width= 1)
+        self.surface.blit(self.font.render("2", False, white), (xLemmingAbilityButton + 3, buttonHeight + 2))
         # TODO: Gabi, zmienic self.walk na self.stop i self.walkOffset'y na self.stopOffset'y
         self.surface.blit(self.walk[0], (xLemmingAbilityButton + 12 + self.walkOffset[0], buttonHeight + 2 + self.walkOffset[1]))
 

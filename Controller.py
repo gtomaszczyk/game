@@ -43,7 +43,7 @@ class Controller:
         sprawdza jakie klawisze zostały naciśnięte
         """
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_2]:
+        if keys[pygame.K_2] or keys[pygame.K_KP_2]:
             self.model.currentLevel.selectedLemmingAbility = LemmingAbility.Stopper
 
         '''
