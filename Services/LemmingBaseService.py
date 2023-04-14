@@ -1,3 +1,4 @@
+from Attributes.MapAttributes import WallType
 from Models.Model import Model
 from Attributes.LemmingAttributes import LemmingState,LemmingDirection
 from Models.Lemming import Lemming
@@ -11,9 +12,9 @@ class LemmingBaseService:
         
     def _isPositionAvailable(self, x, y):
         """
-        sprawdza czy ruch jest możliwy
+        sprawdza czy ruch jest możliwy, dla chodzenia i spadania
         """
-        return x >= len(self.model.currentLevel.map) or y >= len(self.model.currentLevel.map[x]) or not self.model.currentLevel.map[x][y]
+        return x >= len(self.model.currentLevel.map) or y >= len(self.model.currentLevel.map[x]) or (self.model.currentLevel.map[x][y] == WallType.Air)
     
     def _isStandingOnGround(self, lemming: Lemming):
         """

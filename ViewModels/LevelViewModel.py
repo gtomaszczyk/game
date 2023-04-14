@@ -1,4 +1,5 @@
 import pygame
+from Attributes.MapAttributes import WallType
 from Models.Model import *
 
 class LevelViewModel:
@@ -53,7 +54,8 @@ class LevelViewModel:
         """
         for x, column in enumerate(self.model.currentLevel.map):
             for y, value in enumerate(column):
-                self.surface.set_at((x, y), (255, 255, 255) if value else (0,0,0))
+                if value == WallType.Solid or value == WallType.Dirt:
+                    self.surface.set_at((x, y), (255, 255, 255))
 
 
         self.surface.set_at((self.model.currentLevel.endPosition[0],self.model.currentLevel.endPosition[1]), (255, 255, 255))

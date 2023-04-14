@@ -53,7 +53,6 @@ class Controller:
             self.model.x += 1
         '''
     
-         
     def updateModel(self):
         """
         aktualizuje model na podstawie zdarzeń

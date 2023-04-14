@@ -21,5 +21,6 @@ class Level:
             tempMap = [[] for x in range(len(lines[0]))]
             for line in lines:
                 for y, char in enumerate(line):
-                    tempMap[y].append(char == '1')
+                    if char.isdigit():
+                        tempMap[y].append(int(char))
             self.map = tempMap
