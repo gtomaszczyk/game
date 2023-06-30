@@ -69,7 +69,7 @@ class LevelViewModel:
         lemmingsOnMap=[lem for lem in self.model.currentLevel.lemmings if lem.finished == False]
         for lemming in lemmingsOnMap:
         #for lemming in self.model.currentLevel.lemmings: 
-            if lemming.state == LemmingState.Walk:
+            if (lemming.state == LemmingState.Walk):
                 if (lemming.direction == LemmingDirection.Right):
                     image = self.walk[lemming.actionMoment] 
                     self.surface.blit(image, (lemming.position[0] + self.walkOffset[0], lemming.position[1] + self.walkOffset[1]))
@@ -78,7 +78,7 @@ class LevelViewModel:
                     image = self.walk2[lemming.actionMoment] 
                     self.surface.blit(image, (lemming.position[0] + self.walkOffset[0], lemming.position[1] + self.walkOffset[1]))
                     lemming.actionMoment = (lemming.actionMoment + 1) % len(self.walk) 
-            elif lemming.state == LemmingState.Fall:
+            elif (lemming.state == LemmingState.Fall):
                 if (lemming.direction == LemmingDirection.Right):
                     image = self.fall[lemming.actionMoment] 
                     self.surface.blit(image, (lemming.position[0] + self.fallOffset[0], lemming.position[1] + self.fallOffset[1]))
@@ -87,5 +87,9 @@ class LevelViewModel:
                     image = self.fall2[lemming.actionMoment] 
                     self.surface.blit(image, (lemming.position[0] + self.fallOffset2[0], lemming.position[1] + self.fallOffset2[1]))
                     lemming.actionMoment = (lemming.actionMoment + 1) % len(self.fall)
-
+            elif (lemming.state == LemmingState.SpecialAbility):
+                if (lemming.ability == LemmingAbility.Stopper):
+                    image = self.stop[lemming.actionMoment] 
+                    self.surface.blit(image, (lemming.position[0] + self.stopOffset[0], lemming.position[1] + self.stopOffset[1]))
+                    lemming.actionMoment = (lemming.actionMoment + 1) % len(self.stop)
         self.__drawLemmingAbilityButtons()
