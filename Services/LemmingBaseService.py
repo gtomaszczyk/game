@@ -32,7 +32,7 @@ class LemmingBaseService:
         for i in range(1, lemming.size[1]+1):
             hop = lemming.size[1]-i
             if not self._isPositionAvailable(x, lemming.position[1]+i):
-                if hop <= lemming.hopheight:
+                if hop <= lemming.hopHeight:
                     break
                 canMove = False
                 break
