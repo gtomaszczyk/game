@@ -18,7 +18,7 @@ class LevelViewModel:
         self.stop = [pygame.image.load('Images\\Lemming\\' + imageName) for imageName in ['stopper1.png', 'stopper2.png', 'stopper3.png', 'stopper4.png', 'stopper5.png', 'stopper5.png', 'stopper4.png', 'stopper3.png', 'stopper2.png', ]]
         self.stopOffset = [-2,0] #?
         self.dig = [pygame.image.load('Images\\Lemming\\' + imageName) for imageName in ['dig1.png','dig2.png','dig3.png','dig4.png','dig5.png','dig6.png','dig7.png','dig8.png']]
-        self.digOffset = [-2, 1]
+        self.digOffset = [-2, 3]
         self.climb = [pygame.image.load('Images\\Lemming\\' + imageName) for imageName in ['climb1.png','climb2.png','climb3.png','climb4.png','climb5.png','climb6.png','climb7.png','climb8.png']]
         self.walk2 = [pygame.transform.flip(x, True, False) for x in self.walk]
         self.fall2 = [pygame.transform.flip(x, True, False) for x in self.fall]
@@ -92,4 +92,8 @@ class LevelViewModel:
                     image = self.stop[lemming.actionMoment] 
                     self.surface.blit(image, (lemming.position[0] + self.stopOffset[0], lemming.position[1] + self.stopOffset[1]))
                     lemming.actionMoment = (lemming.actionMoment + 1) % len(self.stop)
+                elif (lemming.ability == LemmingAbility.Digger):
+                    image = self.dig[lemming.actionMoment] 
+                    self.surface.blit(image, (lemming.position[0] + self.digOffset[0], lemming.position[1] + self.digOffset[1]))
+                    lemming.actionMoment = (lemming.actionMoment + 1) % len(self.dig)
         self.__drawLemmingAbilityButtons()

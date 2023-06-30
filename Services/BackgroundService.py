@@ -3,6 +3,7 @@ from Attributes.LemmingAttributes import *
 from Models.Lemming import Lemming
 from Services.LemmingBaseService import LemmingBaseService
 from Services.LemmingStopperService import LemmingStopperService
+from Services.LemmingDiggerService import LemmingDiggerService
 import datetime as dt
 
 class BackgroundService:
@@ -13,6 +14,7 @@ class BackgroundService:
         self.model = model
         self.lemmingBaseService = LemmingBaseService(self.model)
         self.lemmingStopperService = LemmingStopperService(self.model)
+        self.lemmingDiggerService = LemmingDiggerService(self.model)
 
     def __createNewLemming(self):
         """
@@ -38,6 +40,8 @@ class BackgroundService:
                 self.lemmingBaseService.invokeLemmingAction(lemming)
             elif lemming.ability == LemmingAbility.Stopper:
                 self.lemmingStopperService.invokeLemmingAction(lemming)
+            elif lemming.ability == LemmingAbility.Digger:
+                self.lemmingDiggerService.invokeLemmingAction(lemming)
         
         
     

@@ -46,6 +46,8 @@ class Controller:
         if keys[pygame.K_2] or keys[pygame.K_KP_2]:
             self.model.currentLevel.selectedLemmingAbility = LemmingAbility.Stopper
 
+        if keys[pygame.K_1] or keys[pygame.K_KP_1]:
+            self.model.currentLevel.selectedLemmingAbility = LemmingAbility.Digger
         '''
         if keys[pygame.K_LEFT]:
             self.model.x -= 1
