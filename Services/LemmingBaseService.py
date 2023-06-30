@@ -75,7 +75,7 @@ class LemmingBaseService:
         w zależności od ability lemminga wywołuje odpowiednią akcję
         """
         if self._checkSpecialAbilityCondition(lemming):
-            #lemming.state = LemmingState.SpecialAbility
+            lemming.state = LemmingState.SpecialAbility
             self._invokeSpecialAbility(lemming)
         else:
             self._updatePosition(lemming)
