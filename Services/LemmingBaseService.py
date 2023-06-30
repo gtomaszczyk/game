@@ -15,6 +15,7 @@ class LemmingBaseService:
         sprawdza czy ruch jest możliwy, dla chodzenia i spadania
         """
         return x >= len(self.model.currentLevel.map) or y >= len(self.model.currentLevel.map[x]) or (self.model.currentLevel.map[x][y] == WallType.Air)
+
     
     def _isStandingOnGround(self, lemming: Lemming):
         """
@@ -25,6 +26,17 @@ class LemmingBaseService:
             if (not self._isPositionAvailable(x, lemmingYBottomSide + 1)):
                 return True
         return False
+    
+    def _canLemmingMove(self, lemming, x):
+        canMove = True
+        for i in range(1, lemming.size[1]+1):
+            hop = lemming.size[1]-i
+            if not self._isPositionAvailable(x, lemming.position[1]+i):
+                if hop <= lemming.hopheight:
+                    break
+                canMove = False
+                break
+        return canMove, hop
     
     def _updatePosition(self, lemming: Lemming):
         """
@@ -40,16 +52,26 @@ class LemmingBaseService:
             lemming.state = LemmingState.Walk
             if (lemming.direction == LemmingDirection.Right):
                 newRightXEdge = lemming.position[0] + lemming.size[0]
-                if self._isPositionAvailable(newRightXEdge, lemming.position[1]):
+
+                canMove, hop = self._canLemmingMove(lemming, newRightXEdge)
+
+                if canMove:
                     lemming.position[0] = lemming.position[0] + 1
+                    lemming.position[1] = lemming.position[1] - hop
                 else:
-                    lemming.direction = LemmingDirection.Left 
+                    lemming.direction = LemmingDirection.Left  
+
             elif (lemming.direction == LemmingDirection.Left):
                 newLeftXEdge  = lemming.position[0] - 1
-                if self._isPositionAvailable(newLeftXEdge, lemming.position[1]):
+
+                canMove, hop = self._canLemmingMove(lemming, newLeftXEdge)
+
+                if canMove:
                     lemming.position[0] = lemming.position[0] - 1
+                    lemming.position[1] = lemming.position[1] - hop
                 else:
                     lemming.direction = LemmingDirection.Right
+
         #testowo finishowanie leminga
         if lemming.position[1] + lemming.size[1] > self.model.currentLevel.endPosition[1] and lemming.position[0] + lemming.size[0] > self.model.currentLevel.endPosition[0]:
             lemming.finished = True

@@ -13,6 +13,7 @@ class Lemming:
         self.state = LemmingState.Walk
         self.direction = LemmingDirection.Right
         self.ability = LemmingAbility.Walker
+        self.hopHeight = 2
                        
 
    
