@@ -4,6 +4,7 @@ from Models.Lemming import Lemming
 from Services.LemmingBaseService import LemmingBaseService
 from Services.LemmingStopperService import LemmingStopperService
 from Services.LemmingDiggerService import LemmingDiggerService
+from Services.LemmingClimberService import LemmingClimberService
 import datetime as dt
 
 class BackgroundService:
@@ -15,6 +16,7 @@ class BackgroundService:
         self.lemmingBaseService = LemmingBaseService(self.model)
         self.lemmingStopperService = LemmingStopperService(self.model)
         self.lemmingDiggerService = LemmingDiggerService(self.model)
+        self.lemmingClimberService = LemmingClimberService(self.model)
 
     def __createNewLemming(self):
         """
@@ -31,8 +33,8 @@ class BackgroundService:
         if self.model.currentLevel.lastLemmingTime < dt.datetime.now()-self.model.currentLevel.LemmingInterval and len(self.model.currentLevel.lemmings)<self.model.currentLevel.allLemmingCount:
             self.__createNewLemming()
             self.model.currentLevel.lastLemmingTime=dt.datetime.now()
-            
-        
+
+
         lemmingsOnMap=[lem for lem in self.model.currentLevel.lemmings if lem.finished == False]
         for lemming in lemmingsOnMap:
         #for lemming in self.model.currentLevel.lemmings: #TODO: petla powinna isc tylko po lemmingach ktore maja finished == False; nie chcemy aktualizowac pozycji lemmingow ktore zakonczyly rozgrywke 
@@ -42,6 +44,8 @@ class BackgroundService:
                 self.lemmingStopperService.invokeLemmingAction(lemming)
             elif lemming.ability == LemmingAbility.Digger:
                 self.lemmingDiggerService.invokeLemmingAction(lemming)
+            elif lemming.ability == LemmingAbility.Climber:
+                self.lemmingClimberService.invokeLemmingAction(lemming)
         
         
     

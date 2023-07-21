@@ -9,6 +9,8 @@ class LemmingDiggerService (LemmingBaseService):
         super().__init__(model)
 
     def _checkSpecialAbilityCondition(self, lemming: Lemming):
+        if (lemming.state == LemmingState.SpecialAbility):
+            return True
         yDigEdge = lemming.position[1] + lemming.size[1] 
         map = self.model.currentLevel.map
         lemming.state != LemmingState.Fall 
@@ -16,6 +18,7 @@ class LemmingDiggerService (LemmingBaseService):
             if map[lemming.position[0] + i][yDigEdge] == WallType.Dirt:
                 return True
         return False 
+    
     def _invokeSpecialAbility(self, lemming: Lemming):
         if lemming.actionMoment == 0:
             yDigEdge = lemming.position[1] + lemming.size[1]

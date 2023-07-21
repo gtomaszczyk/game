@@ -20,6 +20,7 @@ class LevelViewModel:
         self.dig = [pygame.image.load('Images\\Lemming\\' + imageName) for imageName in ['dig1.png','dig2.png','dig3.png','dig4.png','dig5.png','dig6.png','dig7.png','dig8.png']]
         self.digOffset = [-2, 3]
         self.climb = [pygame.image.load('Images\\Lemming\\' + imageName) for imageName in ['climb1.png','climb2.png','climb3.png','climb4.png','climb5.png','climb6.png','climb7.png','climb8.png']]
+        self.climbOffset = [-4, -2]
         self.walk2 = [pygame.transform.flip(x, True, False) for x in self.walk]
         self.fall2 = [pygame.transform.flip(x, True, False) for x in self.fall]
         self.startportal = pygame.image.load('Images\\start-portal.png')
@@ -43,8 +44,11 @@ class LevelViewModel:
         # stopper button
         pygame.draw.rect(self.surface, red if self.model.currentLevel.selectedLemmingAbility == LemmingAbility.Stopper else white, (xLemmingAbilityButton, buttonHeight, buttonWidth, buttonHeight), width= 1)
         self.surface.blit(self.font.render("2", False, white), (xLemmingAbilityButton + 3, buttonHeight + 2))
-        # TODO: Gabi, zmienic self.walk na self.stop i self.walkOffset'y na self.stopOffset'y
         self.surface.blit(self.stop[0], (xLemmingAbilityButton + 12 + self.stopOffset[0], buttonHeight + 2 + self.stopOffset[1]))
+        
+        pygame.draw.rect(self.surface, red if self.model.currentLevel.selectedLemmingAbility == LemmingAbility.Climber else white, (xLemmingAbilityButton, 2 * buttonHeight, buttonWidth, buttonHeight), width= 1)
+        self.surface.blit(self.font.render("3", False, white), (xLemmingAbilityButton + 3, 2 * buttonHeight + 2))
+        self.surface.blit(self.climb[0], (xLemmingAbilityButton + 12 + self.climbOffset[0], 2 * buttonHeight + 2 + self.climbOffset[1]))
 
     def render(self):
         """
@@ -96,4 +100,8 @@ class LevelViewModel:
                     image = self.dig[lemming.actionMoment] 
                     self.surface.blit(image, (lemming.position[0] + self.digOffset[0], lemming.position[1] + self.digOffset[1]))
                     lemming.actionMoment = (lemming.actionMoment + 1) % len(self.dig)
+                elif (lemming.ability == LemmingAbility.Climber):
+                    image = self.climb[lemming.actionMoment] 
+                    self.surface.blit(image, (lemming.position[0] + self.climbOffset[0], lemming.position[1] + self.climbOffset[1]))
+                    lemming.actionMoment = (lemming.actionMoment + 1) % len(self.climb)
         self.__drawLemmingAbilityButtons()
